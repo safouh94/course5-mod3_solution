@@ -1,12 +1,12 @@
-<div class="emptyMessage" ng-show="found.items.length === 0">Nothing found</div>
+<div class="emptyMessage" ng-show="found.items.length === 0"><strong class="alert alert-warning" style="margin-left: 20px;">Nothing Found!</Strong></div>
 <table class="table table-bordered table-striped" ng-if="found.items.length > 0">
     <thead>
-        <th class="text-xs-center">Id</th>
-        <th class="text-xs-center">Code</th>
-        <th class="text-xs-center">Name</th>
-        <th class="text-xs-center">Description</th>
-        <th class="text-xs-center">Small Portion</th>
-        <th class="text-xs-center">Large Portion</th>
+        <th class="text-xs-center">ID</th>
+        <th class="text-xs-center">CODE</th>
+        <th class="text-xs-center">NAME</th>
+        <th class="text-xs-center">DESCRIPTION</th>
+        <th class="text-xs-center">SMALL PORTION</th>
+        <th class="text-xs-center">LARGE PORTION</th>
         <th></th>
     </thead>
     <tr ng-repeat="item in found.items">

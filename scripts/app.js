@@ -7,7 +7,6 @@ angular.module('NarrowItDownApp', ['ngSanitize'])
 .directive('foundItems', FoundItemsDirective)
 .filter('highlightSearchTerm', HighlightSearchTermFilter);
 
-
 function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundItems.html',
@@ -20,10 +19,8 @@ function FoundItemsDirective() {
     controllerAs: 'found',
     bindToController: true
   };
-
   return ddo;
 }
-
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
@@ -31,14 +28,12 @@ function NarrowItDownController(MenuSearchService) {
 
   ctrl.narrowItDown = function () {
      if (ctrl.searchTerm && ctrl.searchTerm.trim().length > 0) {
-       
        MenuSearchService.getMatchedMenuItems(ctrl.searchTerm.trim()).then( function (result) {
          ctrl.found = result;
        })
        .catch(function (error) {
          console.log(error);
        });
-
      } else {
        ctrl.found = [];
      }
@@ -50,6 +45,7 @@ function NarrowItDownController(MenuSearchService) {
 
 }
 
+
 MenuSearchService.$inject = ['$q','$http']
 function MenuSearchService($q, $http) {
   var service = this;
@@ -57,14 +53,16 @@ function MenuSearchService($q, $http) {
   service.getMatchedMenuItems = function(searchTerm) {
     return service.menu().then(function (data) {
         return data.filter(function (item) {
-          return item.description !== undefined && item.description.indexOf(searchTerm.toLowerCase()) != -1;
+          return (item.description !== undefined && item.description.indexOf(searchTerm.toLowerCase()) != -1);
         });
     })
   };
 
+
+
+
   service.menu = function() {
     var deferred = $q.defer();
-
     if (service.cached_menu) {
       deferred.resolve(service.cached_menu);
     } else {
@@ -73,10 +71,12 @@ function MenuSearchService($q, $http) {
         deferred.resolve(service.cached_menu)
       });
     }
-
     return deferred.promise;
   };
 }
+
+
+
 
 function HighlightSearchTermFilter() {
   return function (input, searchTerm) {
@@ -85,5 +85,7 @@ function HighlightSearchTermFilter() {
     return input;
   }
 }
+
+
 
 })();

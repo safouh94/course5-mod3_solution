@@ -9,6 +9,9 @@ input[type="text"] {
   float: left;
   margin-left: 10px;
 }
+#nothingFound{
+  background: Red;
+}
 .loader {
   display: none;
   margin-left: 5px;
