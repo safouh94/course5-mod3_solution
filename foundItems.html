@@ -1,0 +1,21 @@
+<div class="emptyMessage" ng-show="found.items.length === 0">Nothing found</div>
+<table class="table table-bordered table-striped" ng-if="found.items.length > 0">
+    <thead>
+        <th class="text-xs-center">Id</th>
+        <th class="text-xs-center">Code</th>
+        <th class="text-xs-center">Name</th>
+        <th class="text-xs-center">Description</th>
+        <th class="text-xs-center">Small Portion</th>
+        <th class="text-xs-center">Large Portion</th>
+        <th></th>
+    </thead>
+    <tr ng-repeat="item in found.items">
+        <td>{{ item.id }}</td>
+        <td>{{ item.short_name }}</td>
+        <td>{{ item.name }}</td>
+        <td ng-bind-html="item.description | highlightSearchTerm : found.searchTerm"></td>
+        <td class="text-nowrap">{{ item.price_small | currency }} <span ng-if="item.small_portion_name">for a {{ item.small_portion_name }}</span> </td>
+        <td class="text-nowrap">{{ item.price_large | currency }} <span ng-if="item.large_portion_name">for a {{ item.large_portion_name }}</span> </td>
+        <td class="text-nowrap"><button ng-click="found.onRemove({index: $index});">I don't want this one!</button></td>
+    </div>
+</table>
